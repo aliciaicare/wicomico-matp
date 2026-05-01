@@ -518,12 +518,19 @@ function toBase64(file) {
 
 // ── UI helpers ─────────────────────────────────────────────────────────────
 function showScreen(name) {
-  ["apikey","upload","loading","review"].forEach(s => {
-    document.getElementById("screen-" + s).classList.toggle("hidden", s !== name);
-    if (s === "review") document.getElementById("screen-" + s).style.display = s === name ? "block" : "none";
-    else if (s === "apikey" || s === "upload" || s === "loading") document.getElementById("screen-" + s).style.display = s === name ? "flex" : "none";
+  ["upload","loading","review"].forEach(s => {
+    const el = document.getElementById("screen-" + s);
+    if (!el) return;
+    if (s === name) {
+      el.classList.remove("hidden");
+      el.style.display = s === "review" ? "block" : "flex";
+    } else {
+      el.classList.add("hidden");
+      el.style.display = "none";
+    }
   });
-  document.getElementById("header-progress").classList.toggle("hidden", name !== "review");
+  const hp = document.getElementById("header-progress");
+  if (hp) hp.classList.toggle("hidden", name !== "review");
 }
 
 function setLoadingStep(step, msg, sub) {
@@ -713,15 +720,8 @@ function submitApiKey() {
 
 // Allow Enter key to submit
 document.addEventListener("DOMContentLoaded", () => {
-  const inp = document.getElementById("api-key-input");
-  if (inp) {
-    inp.addEventListener("keydown", e => { if (e.key === "Enter") submitApiKey(); });
-    const saved = getApiKey();
-    if (saved) inp.value = saved;
-  }
-  // Always show API key screen on load so user can verify key
-  showScreen("apikey");
-});
+  showScreen("upload");
+});;
 
 function resetApp() {
   fields = {};

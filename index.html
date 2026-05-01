@@ -77,31 +77,7 @@
 <div id="app">
 
   <!-- API KEY SCREEN -->
-  <div id="screen-apikey" style="display:flex;flex-direction:column;align-items:center;gap:22px;padding-top:60px">
-    <div style="text-align:center">
-      <div style="font-size:32px;margin-bottom:12px">🔑</div>
-      <div style="font-size:22px;font-weight:700;color:#f1f5f9;margin-bottom:8px">Enter your Anthropic API Key</div>
-      <div style="font-size:14px;color:#334155;max-width:440px;line-height:1.8">
-        Your key is sent <strong>directly to Anthropic</strong> and never stored on any server.
-        Get a key at <a href="https://console.anthropic.com" target="_blank" style="color:#0ea5e9">console.anthropic.com</a>
-        → API Keys → Create Key.
-        <br><br><span style="color:#f59e0b">⚠ If you see a 401 error, your key is invalid or expired — get a fresh one.</span>
-      </div>
-    </div>
-    <div style="width:100%;max-width:440px">
-      <div style="font-size:11px;font-weight:600;color:#64748b;letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px">API Key</div>
-      <input type="text" id="api-key-input" placeholder="sk-ant-api03-..." style="font-size:15px;letter-spacing:.05em;margin-bottom:12px">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
-        <input type="checkbox" id="show-key" onchange="document.getElementById('api-key-input').type = this.checked ? 'password' : 'text'" style="width:auto;margin:0">
-        <label for="show-key" style="font-size:12px;color:#475569;cursor:pointer">Hide key</label>
-      </div>
-      <button class="btn-primary" style="width:100%;padding:12px;font-size:15px" onclick="submitApiKey()">Save &amp; Continue →</button>
-    </div>
-    <div id="apikey-error" class="error-box hidden"></div>
-    <div style="font-size:11px;color:#1e3a5f;text-align:center;max-width:380px;line-height:1.8">
-      ⚠ PHI is processed via Anthropic's API. Ensure your facility's data handling policy covers this before uploading live patient records.
-    </div>
-  </div>
+  
 
   <!-- UPLOAD SCREEN -->
   <div id="screen-upload" style="display:flex;flex-direction:column;align-items:center;gap:22px;padding-top:40px">

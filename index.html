@@ -6,64 +6,12 @@
 <title>Wicomico MATP Cert</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #07111f; --surface: #0d1a2d; --border: #1a2f4a;
-  --text: #e2e8f0; --muted: #4a6080; --accent: #3b82f6;
-  --green: #10b981; --red: #ef4444; --purple: #8b5cf6;
-}
-body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
-#app { max-width: 700px; margin: 0 auto; padding: 20px; }
-.header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; gap: 12px; margin-bottom: 24px; border-radius: 10px; }
-.header-icon { font-size: 24px; }
-.header-title { font-size: 16px; font-weight: 700; color: var(--text); }
-.header-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
-input, textarea, select { width: 100%; padding: 9px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none; }
-input:focus, textarea:focus, select:focus { border-color: var(--accent); }
-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; display: block; margin-bottom: 5px; }
-.field { margin-bottom: 14px; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-.section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 16px; }
-.section-title { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
-.btn { padding: 11px 24px; border-radius: 8px; border: none; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; }
-.btn-primary { background: var(--accent); color: white; width: 100%; padding: 14px; font-size: 15px; }
-.btn-primary:hover { background: #2563eb; }
-.btn-primary:disabled { background: var(--muted); cursor: not-allowed; }
-.drop-zone { border: 2px dashed var(--border); border-radius: 10px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all .2s; margin-bottom: 16px; }
-.drop-zone:hover { border-color: var(--accent); background: rgba(59,130,246,.05); }
-.drop-zone.active { border-color: var(--green); background: rgba(16,185,129,.05); }
-.status { padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; }
-.status.loading { background: rgba(59,130,246,.15); color: #93c5fd; border: 1px solid rgba(59,130,246,.3); }
-.status.success { background: rgba(16,185,129,.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,.3); }
-.status.error { background: rgba(239,68,68,.15); color: #fca5a5; border: 1px solid rgba(239,68,68,.3); }
-.hidden { display: none !important; }
-textarea { resize: vertical; font-size: 14px !important; line-height: 1.8 !important; }
-.large-field textarea { font-size: 16px !important; }
-</style>
-</head>
-<body>
-<div id="app">
-  <div class="header">
-    <div class="header-icon">🏥</div>
-    <div>
-      <div class="header-title">Wicomico County MATP Cert</div>
-      <div class="header-sub">Upload a facesheet to auto-fill the certification form</div>
+<div class="drop-zone" id="drop-zone" style="cursor:pointer;position:relative" onclick="document.getElementById('file-input').click()">
+      <div style="font-size:48px;margin-bottom:12px">📋</div>
+      <div style="font-size:15px;font-weight:600;color:#cbd5e1;margin-bottom:5px">Drop facesheet PDF here</div>
+      <div style="font-size:12px;color:#1e3a5f">or click to browse</div>
     </div>
-    <button onclick="showScreen('apikey')" style="margin-left:auto;background:transparent;border:1px solid var(--border);color:var(--muted);padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">🔑 API Key</button>
-    <div style="display:none">
-    </div>
-  </div>
-
-  
-  <div id="screen-upload">
-    <label for="file-input" class="drop-zone" id="drop-zone" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center">
-      <div style="font-size:40px;margin-bottom:10px">📋</div>
-      <div style="font-size:15px;font-weight:600;color:#cbd5e1;margin-bottom:4px">Drop facesheet PDF here</div>
-      <div style="font-size:12px;color:var(--muted)">or click to browse</div>
-      <input type="file" id="file-input" accept="application/pdf" style="width:0.1px;height:0.1px;opacity:0;overflow:hidden;position:absolute;z-index:-1">
-    </label>
+    <input type="file" id="file-input" accept="application/pdf" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none">
     <div id="upload-status" class="hidden"></div>
   </div>
 
